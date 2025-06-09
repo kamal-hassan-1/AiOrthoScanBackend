@@ -8,7 +8,7 @@ const connectDB = require("./config/db.js");
 const auth = require("./auth.js");
 const dashboard = require("./dashboard.js");
 
-const port = process.env.PORT;
+const port = process.env.PORT || 3500;
 const app = express();
 
 app.use(express.json());
@@ -16,7 +16,7 @@ app.use("/public/images", express.static(path.join(__dirname, "Images")));
 
 app.use(
 	cors({
-		origin: "https://ai-ortho-scan-qd0zhvi4p-kamal-hassans-projects.vercel.app/",
+		origin: "*",
 	})
 );
 
@@ -24,6 +24,6 @@ async function startServer() {
 	const db = await connectDB();
 	app.use("/api/auth", auth(db));
 	app.use("/api/main", dashboard(db));
-	app.listen(port);
+	app.listen(port, () => console.log(`Server running on port ${port}`));
 }
 startServer();
