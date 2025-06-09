@@ -16,7 +16,7 @@ app.use("/public/images", express.static(path.join(__dirname, "Images")));
 
 app.use(
 	cors({
-		origin: "http://localhost:3000",
+		origin: "https://ai-ortho-scan-qd0zhvi4p-kamal-hassans-projects.vercel.app/",
 	})
 );
 
