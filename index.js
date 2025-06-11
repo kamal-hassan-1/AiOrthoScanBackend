@@ -7,6 +7,7 @@ const cors = require("cors");
 const connectDB = require("./config/db.js");
 const auth = require("./auth.js");
 const dashboard = require("./dashboard.js");
+const diagnosis = require("./diagnosis.js")
 
 const port = process.env.PORT || 3500;
 const app = express();
@@ -24,6 +25,7 @@ async function startServer() {
 	const db = await connectDB();
 	app.use("/api/auth", auth(db));
 	app.use("/api/main", dashboard(db));
+	app.use("/api/diagnosis", diagnosis(db));
 	app.listen(port, () => console.log(`Server running on port ${port}`));
 }
 startServer();
